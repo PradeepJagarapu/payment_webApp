@@ -9,13 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionDAO {
-//	Connection con=DBConnection.getCon();
+	static Connection con=DBConnection.getCon();
 	
 	public static List<Transaction> getAllRecords(int pageSize, int offSet){
 		List<Transaction> transactions=new ArrayList<Transaction>();
 		Transaction t=null;
-		Connection con=DBConnection.getCon();
+//		Connection con=DBConnection.getCon();
 		String query="Select * from Transactions LIMIT ? OFFSET ?";
+//		String query="Select * from Transactions";
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
 			ps.setInt(1, pageSize);
@@ -42,4 +43,17 @@ public class TransactionDAO {
 		
 		return transactions;
 	}
+	
+	public static int getTransactionsCount() throws SQLException {
+		int count=0;
+		String query="Select Count(*) from Transactions";
+		PreparedStatement ps=con.prepareStatement(query);
+		ResultSet rs=ps.executeQuery();
+		if(rs.next()) {
+			count=rs.getInt(1);
+		}
+		
+		return count;
+	}
+	
 }
