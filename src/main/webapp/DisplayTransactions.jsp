@@ -9,6 +9,10 @@
 <meta charset="UTF-8">
 <title>Transactions</title>
 <style type="text/css">
+	{
+		margin:0;
+		padding:0;
+	}
 	th,td{
 		border: 1px solid black;
 		padding: 8px;
@@ -17,6 +21,7 @@
 </head>
 <body>
 	<h2>Transactions Details</h2>
+	<a href="DownloadTransactions"><button style="margin-left:92%; margin-bottom:5px;">Download</button></a>
 	<table style='border: 1px solid black; border-collapse: collapse; width: 100%;'>
 		<tr style='background-color: #f4f4f4;'>
 			<th>Transaction ID</th>
@@ -43,12 +48,12 @@
 			for(Transaction t : transactions){
 		%>
 		<tr>
-			<td><%out.print(t.getTransactionId());%></td>
-			<td><% out.print(t.getDate());%></td>
-			<td><%out.print( t.getDescription()); %></td>
-			<td><% out.print(t.getAmount());%></td>
-			<td><%out.print( t.getType()); %></td>
-			<td><%out.print(t.getBalance()); %></td>
+			<td><%= t.getTransactionId()%></td>
+			<td><%= t.getDate()%></td>
+			<td><%= t.getDescription() %></td>
+			<td><%= t.getAmount()%></td>
+			<td><%= t.getType()%></td>
+			<td><%= t.getBalance()%></td>
 		</tr>
 		<%	} %>
 	</table>

@@ -19,4 +19,14 @@
     <servlet-name>DisplayTransactions</servlet-name>
     <url-pattern>/DisplayTransactions</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DownloadTransactions</display-name>
+    <servlet-name>DownloadTransactions</servlet-name>
+    <servlet-class>com.pradeep.servlets.DownloadTransactions</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadTransactions</servlet-name>
+    <url-pattern>/DownloadTransactions</url-pattern>
+  </servlet-mapping>
 </web-app>
