@@ -21,7 +21,7 @@
 </head>
 <body>
 	<h2>Transactions Details</h2>
-	<a href="DownloadTransactions"><button style="margin-left:92%; margin-bottom:5px;">Download</button></a>
+	<a href="DownloadTransactions?page="><button style="margin-left:92%; margin-bottom:5px;">Download</button></a>
 	<table style='border: 1px solid black; border-collapse: collapse; width: 100%;'>
 		<tr style='background-color: #f4f4f4;'>
 			<th>Transaction ID</th>
@@ -43,12 +43,13 @@
 			int offset=(currentPage-1)*pageSize;
 			
 			List<Transaction> transactions=TransactionDAO.getAllRecords(pageSize,offset); 
+			request.setAttribute("transactions", transactions);
 		%>
 		<%
 			for(Transaction t : transactions){
 		%>
 		<tr>
-			<td><%= t.getTransactionId()%></td>
+			<td><%= t.getTransactionId()%></td> 
 			<td><%= t.getDate()%></td>
 			<td><%= t.getDescription() %></td>
 			<td><%= t.getAmount()%></td>
@@ -57,6 +58,7 @@
 		</tr>
 		<%	} %>
 	</table>
+	<a href="DownloadTransactions"><button style="margin-left:92%; margin-bottom:5px;">Download</button></a>
 	<%int numOfPages=(int)Math.ceil(TransactionDAO.getTransactionsCount()*1.0/6);%>
 	<div>
 	<%
