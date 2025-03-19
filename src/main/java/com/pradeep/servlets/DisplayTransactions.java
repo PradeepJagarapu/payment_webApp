@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import com.pradeep.model.TransactionDAO;
+import com.pradeep.model.TransactionDetails;
+
 
 public class DisplayTransactions extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +32,7 @@ public class DisplayTransactions extends HttpServlet {
 		int nextPage=currentPage<6?currentPage+1:1;
 
 		int offSet=(currentPage-1)*pageSize;
-		List<Transaction> transactions=TransactionDAO.getAllRecords(pageSize,offSet);
+		List<TransactionDetails> transactions=TransactionDAO.getAllRecords(pageSize,offSet);
 		
 		pw.println("<table style='border: 1px solid black; border-collapse: collapse; width: 100%;'>");
 		pw.println("<tr style='background-color: #f4f4f4;'>");
@@ -41,14 +44,15 @@ public class DisplayTransactions extends HttpServlet {
 		pw.println("<th style='border: 1px solid black; padding: 8px;'>Balance</th>");
 		pw.println("</tr>");
 
-		for (Transaction t : transactions) {
+		for (TransactionDetails t : transactions) {
 		    pw.println("<tr>");
 		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getTransactionId() + "</td>");
-		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getDate() + "</td>");
-		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getDescription() + "</td>");
-		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getAmount() + "</td>");
-		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getType() + "</td>");
-		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getBalance() + "</td>");
+		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getTransactionDateTime() + "</td>");
+		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getSourceId() + "</td>");
+		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getTargetId() + "</td>");
+		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getSourceType() + "</td>");
+		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getDestinationType() + "</td>");
+		    pw.println("<td style='border: 1px solid black; padding: 8px;'>" + t.getTransactionAmount() + "</td>");
 		    pw.println("</tr>");
 		}
 
