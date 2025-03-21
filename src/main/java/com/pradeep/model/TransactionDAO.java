@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionDAO {
-	static Connection con=DBConnection.getCon();
 	
-	public static List<TransactionDetails> getAllRecords(int pageSize, int offSet){
+	public List<TransactionDetails> getAllRecords(int pageSize, int offSet){
+		Connection con=DBConnection.getCon();
 		List<TransactionDetails> transactions=new ArrayList<TransactionDetails>();
 		TransactionDetails t=null;
 //		Connection con=DBConnection.getCon();
@@ -47,7 +47,8 @@ public class TransactionDAO {
 		return transactions;
 	}
 	
-	public static int getTransactionsCount() throws SQLException {
+	public int getTransactionsCount() throws SQLException {
+		Connection con=DBConnection.getCon();
 		int count=0;
 		String query="Select Count(*) from transaction_details";
 		PreparedStatement ps=con.prepareStatement(query);

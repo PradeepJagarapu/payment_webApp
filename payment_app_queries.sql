@@ -103,6 +103,20 @@ CREATE TABLE source_types (
 INSERT INTO source_types (source_id, source_type) VALUES (1, 'BA');  -- BA-Bank Account
 INSERT INTO source_types (source_id, source_type) VALUES (2, 'WA');  -- WA- Wallet account
 
+ALTER TABLE bank_accounts
+ADD COLUMN balance DECIMAL(15, 2) DEFAULT 0.00;
+
+UPDATE bank_accounts SET balance = 5000.00 WHERE bank_account_id = 1;
+UPDATE bank_accounts SET balance = 10000.00 WHERE bank_account_id = 2;
+UPDATE bank_accounts SET balance = 7500.00 WHERE bank_account_id = 3;
+UPDATE bank_accounts SET balance = 12000.00 WHERE bank_account_id = 4;
+UPDATE bank_accounts SET balance = 3000.00 WHERE bank_account_id = 5;
+UPDATE bank_accounts SET balance = 8000.00 WHERE bank_account_id = 6;
+UPDATE bank_accounts SET balance = 0.00 WHERE bank_account_id = 7; -- Inactive account
+UPDATE bank_accounts SET balance = 0.00 WHERE bank_account_id = 8; -- Inactive account
+UPDATE bank_accounts SET balance = 15000.00 WHERE bank_account_id = 9;
+UPDATE bank_accounts SET balance = 0.00 WHERE bank_account_id = 10; -- Inactive account
+
 SELECT * FROM user_details;
 SELECT * FROM user_account_details;
 SELECT * FROM bank_accounts;
@@ -125,4 +139,6 @@ JOIN bank_accounts b ON u.user_id = b.user_id;
 SELECT t.transaction_id, t.source_id, t.target_id, t.source_type, t.destination_type, t.transaction_amount
 FROM transaction_details t
 WHERE t.source_id = 1 OR t.target_id = 1;
+
+SELECT * FROM bank_accounts WHERE user_id = 1;
 

@@ -43,8 +43,8 @@
 				currentPage=Integer.parseInt(pageParam);
 			}
 			int offset=(currentPage-1)*pageSize;
-			
-			List<TransactionDetails> transactions=TransactionDAO.getAllRecords(0,0); 
+			TransactionDAO txnDao=new TransactionDAO();
+			List<TransactionDetails> transactions=txnDao.getAllRecords(0,0); 
 			System.out.print(transactions.size());
 		%>
 		<%-- 
@@ -74,7 +74,7 @@
 		</tr>
 			<%}%>
 	</table>
-	<%int numOfPages=(int)Math.ceil(TransactionDAO.getTransactionsCount()*1.0/6);%>
+	<%int numOfPages=(int)Math.ceil(txnDao.getTransactionsCount()*1.0/6);%>
 	<div>
 	<%
 		for(int i=1;i<=numOfPages;i++){	

@@ -1,15 +1,32 @@
 package com.pradeep.model;
 
-public class BankAccounts {
+public class BankAccount{
     private int bankAccountId;
     private int userId;
     private String accountNumber;
     private String ifscCode;
     private String bankName;
     private String branchLocation;
+    private double balance;
     private String isActive;
+    
+    public BankAccount() {
+		super();
+	}
 
-    // Getters and Setters
+	public BankAccount(int bankAccountId, int userId, String accountNumber, String ifscCode, String bankName,
+			String branchLocation, String isActive) {
+		super();
+		this.bankAccountId = bankAccountId;
+		this.userId = userId;
+		this.accountNumber = accountNumber;
+		this.ifscCode = ifscCode;
+		this.bankName = bankName;
+		this.branchLocation = branchLocation;
+		this.isActive = isActive;
+	}
+
+	// Getters and Setters
     public int getBankAccountId() {
         return bankAccountId;
     }
@@ -58,7 +75,15 @@ public class BankAccounts {
         this.branchLocation = branchLocation;
     }
 
-    public String getIsActive() {
+    public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	public String getIsActive() {
         return isActive;
     }
 

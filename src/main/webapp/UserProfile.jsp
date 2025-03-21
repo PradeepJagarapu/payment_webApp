@@ -1,3 +1,8 @@
+<%@page import="com.pradeep.model.BankAccount"%>
+<%@page import="java.util.List"%>
+<%@page import="com.pradeep.model.BankAccountDAO"%>
+<%@page import="com.pradeep.model.UserDetails"%>
+<%@page import="com.pradeep.model.UserDetailsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,6 +20,12 @@
             border: 2px solid red;
             padding: 10px;
             text-align: center;
+        }
+        .user-details {
+            background-color: #e9ecef;
+            border: 2px solid green;
+            padding: 10px;
+            margin-bottom: 10px;
         }
         .account-info {
             background-color: #e9ecef;
@@ -62,7 +73,18 @@
         <p>Welcome <User Full Name></p>
         <a href="logout.jsp"><button>Logout</button></a>
     </div>
-
+	    <!-- User Details Section -->
+	<%
+		UserDetailsDAO userDao=new UserDetailsDAO();
+		UserDetails user=userDao.getUser(1);
+	%>
+    <div class="user-details">
+        <h3>User Information</h3>
+        <p><strong>Name:</strong><%=user.getUserName()%></p>
+        <p><strong>Email:</strong><%=user.getEmail()%></p>
+        <p><strong>Phone:</strong><%=user.getPhoneNumber()%></p>
+        <p><strong>Address:</strong><%=user.getAddress()%></p>
+    </div>
     <!-- Account Information Section -->
     <div class="account-info">
         <div>
@@ -75,30 +97,20 @@
 
     <!-- Bank Accounts Section -->
     <div class="bank-accounts">
+    <%
+	    BankAccountDAO bankDao=new BankAccountDAO();
+		List<BankAccount> bankAccs=bankDao.getBankAccounts(1);
+    	for(BankAccount bankAcc:bankAccs){
+    %>
         <div class="bank-account">
-            <p>BANK NAME</p>
-            <p>Bank Acct No: 1234</p>
-            <p>Balance:</p>
-            <p>IFSC Code:</p>
-            <p>Branch:</p>
+            <p><%= bankAcc.getBankName() %></p>
+            <p>Bank Acct No:<%=bankAcc.getAccountNumber()%></p>
+            <p>Balance:<%=bankAcc.getBalance()%></p>
+            <p>IFSC Code:<%=bankAcc.getIfscCode() %></p>
+            <p>Branch:<%=bankAcc.getBranchLocation() %></p>
             <a href="editBankAcct.jsp?acctNo=1234"><button class="edit-button">Edit</button></a>
         </div>
-        <div class="bank-account">
-            <p>BANK NAME</p>
-            <p>Bank Acct No: 1234</p>
-            <p>Balance:</p>
-            <p>IFSC Code:</p>
-            <p>Branch:</p>
-            <a href="editBankAcct.jsp?acctNo=1234"><button class="edit-button">Edit</button></a>
-        </div>
-        <div class="bank-account">
-            <p>BANK NAME</p>
-            <p>Bank Acct No: 1234</p>
-            <p>Balance:</p>
-            <p>IFSC Code:</p>
-            <p>Branch:</p>
-            <a href="editBankAcct.jsp?acctNo=1234"><button class="edit-button">Edit</button></a>
-        </div>
+    <%	} %>
         <div>
             <a href="addBankAcct.jsp"><button class="add-button">[+]</button></a>
         </div>

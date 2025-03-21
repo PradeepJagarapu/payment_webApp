@@ -32,7 +32,8 @@ public class DisplayTransactions extends HttpServlet {
 		int nextPage=currentPage<6?currentPage+1:1;
 
 		int offSet=(currentPage-1)*pageSize;
-		List<TransactionDetails> transactions=TransactionDAO.getAllRecords(pageSize,offSet);
+		TransactionDAO txnDao=new TransactionDAO();
+		List<TransactionDetails> transactions=txnDao.getAllRecords(pageSize,offSet);
 		
 		pw.println("<table style='border: 1px solid black; border-collapse: collapse; width: 100%;'>");
 		pw.println("<tr style='background-color: #f4f4f4;'>");

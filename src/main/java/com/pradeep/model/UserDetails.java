@@ -9,8 +9,25 @@ public class UserDetails {
     private String address;
     private String phoneNumber;
     private String email;
+    
+    public UserDetails() {
+		super();
+	}
 
-    // Getters and Setters
+	public UserDetails(int userId, String userName, String password, String firstName, String lastName, String address,
+			String phoneNumber, String email) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+	}
+
+	// Getters and Setters
     public int getUserId() {
         return userId;
     }

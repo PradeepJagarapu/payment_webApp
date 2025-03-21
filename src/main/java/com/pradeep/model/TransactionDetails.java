@@ -13,9 +13,11 @@ public class TransactionDetails {
     private String destinationType;
     private BigDecimal transactionAmount;
     
-    
-    
-    public TransactionDetails(int transactionId, Date transactionDateTime, int sourceId, int targetId,
+    public TransactionDetails() {
+		super();
+	}
+
+	public TransactionDetails(int transactionId, Date transactionDateTime, int sourceId, int targetId,
 			String sourceType, String destinationType, BigDecimal transactionAmount) {
 		super();
 		this.transactionId = transactionId;
