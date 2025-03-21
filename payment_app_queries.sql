@@ -117,6 +117,9 @@ UPDATE bank_accounts SET balance = 0.00 WHERE bank_account_id = 8; -- Inactive a
 UPDATE bank_accounts SET balance = 15000.00 WHERE bank_account_id = 9;
 UPDATE bank_accounts SET balance = 0.00 WHERE bank_account_id = 10; -- Inactive account
 
+ -- adding AUTO INCREMENT constraint to banck_account_id
+ALTER TABLE bank_accounts MODIFY COLUMN bank_account_id INT AUTO_INCREMENT;
+
 SELECT * FROM user_details;
 SELECT * FROM user_account_details;
 SELECT * FROM bank_accounts;
