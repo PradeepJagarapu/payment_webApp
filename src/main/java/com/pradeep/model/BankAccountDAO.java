@@ -9,6 +9,29 @@ import java.util.List;
 
 public class BankAccountDAO {
 	
+	public boolean addBankAcc(BankAccount bankAccount){
+		Connection con=DBConnection.getCon();
+		String query="insert into bank_accounts(user_id, account_number, ifsc_code, bank_name, branch_location,balance,is_active) values(?,?,?,?,?,?,'yes')";
+		
+		try {
+			PreparedStatement ps=con.prepareStatement(query);
+			ps.setInt(1, bankAccount.getUserId());
+	        ps.setString(2, bankAccount.getAccountNumber());
+	        ps.setString(3, bankAccount.getIfscCode());
+	        ps.setString(4, bankAccount.getBankName());
+	        ps.setString(5, bankAccount.getBranchLocation());
+	        ps.setDouble(6, bankAccount.getBalance());
+			
+			int rowsAffected=ps.executeUpdate();
+			
+			return rowsAffected>0;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public List<BankAccount> getBankAccounts(int user_Id) {
 		Connection con=DBConnection.getCon();
 		BankAccount bankAcc=null;

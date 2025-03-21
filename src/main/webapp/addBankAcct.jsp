@@ -55,7 +55,7 @@
 <body>
     <div class="container">
         <h2>Add Bank Account</h2>
-        <form action="processAddBankAcct.jsp" method="post">
+        <form action="AddBankAccountServlet" method="post">
             <div class="form-group">
                 <label for="bankName">BANK NAME:</label>
                 <input type="text" id="bankName" name="bankName" required>
@@ -64,22 +64,30 @@
                 <label for="accountNumber">ACCOUNT NUMBER:</label>
                 <input type="text" id="accountNumber" name="accountNumber" required>
             </div>
+            <!-- 
             <div class="form-group">
                 <label for="accountType">ACCOUNT TYPE:</label>
                 <input type="text" id="accountType" name="accountType" required>
             </div>
+             -->
             <div class="form-group">
                 <label for="ifscCode">IFSC CODE:</label>
                 <input type="text" id="ifscCode" name="ifscCode" required>
             </div>
             <div class="form-group">
+                <label for="branchLocation">BRANCH:</label>
+                <input type="text" id="branchLocation" name="branchLocation" required>
+            </div>
+            <div class="form-group">
                 <label for="currentBalance">CURRENT BALANCE:</label>
                 <input type="number" id="currentBalance" name="currentBalance" step="0.01" required>
             </div>
+            <!--
             <div class="form-group">
                 <label for="pin">PIN:</label>
                 <input type="password" id="pin" name="pin" required>
             </div>
+            -->
             <button type="submit" class="submit-button">Submit</button>
         </form>
     </div>

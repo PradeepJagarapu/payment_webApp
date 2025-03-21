@@ -29,4 +29,14 @@
     <servlet-name>DownloadTransactions</servlet-name>
     <url-pattern>/DownloadTransactions</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddBankAccountServlet</display-name>
+    <servlet-name>AddBankAccountServlet</servlet-name>
+    <servlet-class>com.pradeep.servlets.AddBankAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddBankAccountServlet</servlet-name>
+    <url-pattern>/AddBankAccountServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
