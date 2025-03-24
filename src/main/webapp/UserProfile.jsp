@@ -75,8 +75,9 @@
     </div>
 	    <!-- User Details Section -->
 	<%
+		int userId=(int)session.getAttribute("userId");
 		UserDetailsDAO userDao=new UserDetailsDAO();
-		UserDetails user=userDao.getUser(1);
+		UserDetails user=userDao.getUser(userId);
 	%>
     <div class="user-details">
         <h3>User Information</h3>
@@ -99,7 +100,7 @@
     <div class="bank-accounts">
     <%
 	    BankAccountDAO bankDao=new BankAccountDAO();
-		List<BankAccount> bankAccs=bankDao.getBankAccounts(1);
+		List<BankAccount> bankAccs=bankDao.getBankAccounts(userId);
     	for(BankAccount bankAcc:bankAccs){
     %>
         <div class="bank-account">

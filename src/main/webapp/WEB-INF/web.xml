@@ -39,4 +39,34 @@
     <servlet-name>AddBankAccountServlet</servlet-name>
     <url-pattern>/AddBankAccountServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.pradeep.servlets.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.pradeep.servlets.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SendMoney</display-name>
+    <servlet-name>SendMoney</servlet-name>
+    <servlet-class>com.pradeep.servlets.SendMoney</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendMoney</servlet-name>
+    <url-pattern>/SendMoney</url-pattern>
+  </servlet-mapping>
 </web-app>

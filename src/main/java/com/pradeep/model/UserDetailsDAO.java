@@ -7,6 +7,28 @@ import java.sql.SQLException;
 
 public class UserDetailsDAO {
 	
+	public int authenticateUser(String username,String password) {
+		Connection con=DBConnection.getCon();
+		String query="SELECT * FROM user_details where user_name=? && password=?";
+		
+		try {
+			PreparedStatement ps=con.prepareStatement(query);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
 	public UserDetails getUser(int user_Id) {
 		Connection con=DBConnection.getCon();
 		UserDetails user=null;

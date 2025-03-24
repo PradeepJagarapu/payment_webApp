@@ -1,3 +1,6 @@
+<%@page import="com.pradeep.model.BankAccountDAO"%>
+<%@page import="com.pradeep.model.BankAccount"%>
+<%@page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -63,11 +66,42 @@
             background-color: #ff3333;
         }
     </style>
+    <!-- 
+    <script>
+        // Function to toggle input fields based on radio button selection
+        function toggleInputs() {
+            const toAccountInput = document.getElementById("toAccount");
+            const toWalletInput = document.getElementById("toWallet");
+
+            const toAccountRadio = document.querySelector('input[name="toType"][value="account"]');
+            const toWalletRadio = document.querySelector('input[name="toType"][value="wallet"]');
+
+            if (toAccountRadio.checked) {
+                toAccountInput.disabled = false; // Enable "TO ACCOUNT NUMBER"
+                toWalletInput.disabled = true;   // Disable "TO WALLET"
+            } else if (toWalletRadio.checked) {
+                toAccountInput.disabled = true;  // Disable "TO ACCOUNT NUMBER"
+                toWalletInput.disabled = false;  // Enable "TO WALLET"
+            }
+        }
+
+        // Attach event listeners to radio buttons
+        window.onload = function () {
+            const radios = document.querySelectorAll('input[name="toType"]');
+            radios.forEach(radio => {
+                radio.addEventListener("change", toggleInputs);
+            });
+
+            // Initialize the state on page load
+            toggleInputs();
+        };
+    </script>
+    -->
 </head>
 <body>
     <div class="container">
         <h2>SEND MONEY</h2>
-        <form action="processSendMoney.jsp" method="post">
+        <form action="SendMoney" method="post">
             <div class="form-group">
                 <label for="amount">AMOUNT TO SEND:</label>
                 <input type="number" id="amount" name="amount" step="0.01" required>
@@ -75,17 +109,23 @@
             <div class="form-group">
                 <label for="from">FROM:</label>
                 <select id="from" name="from" required>
-                    <option value="">Select Account</option>
-                    <!-- Add options dynamically from your backend -->
+                    <option value="" disabled selected>Select Account</option>
+                    <%
+                        BankAccountDAO bankDao = new BankAccountDAO();
+                        List<BankAccount> bankAccs = bankDao.getBankAccounts(1);
+                        for (BankAccount bankAcc : bankAccs) {
+                    %>
+                    <option value="<%=bankAcc.getAccountNumber()%>"><%=bankAcc.getBankName()+":"+bankAcc.getAccountNumber()%></option>
+                    <%  }   %>
                 </select>
             </div>
             <div class="radio-group">
                 <label>
-                    <input type="radio" name="toType" value="account" checked>
+                    <input type="radio" name="toType" value="BA" checked>
                     TO ACCOUNT NUMBER
                 </label>
                 <label>
-                    <input type="radio" name="toType" value="wallet">
+                    <input type="radio" name="toType" value="WA">
                     TO WALLET
                 </label>
             </div>
@@ -100,5 +140,34 @@
             <button type="submit" class="submit-button">SEND</button>
         </form>
     </div>
+    <script>
+        // Function to toggle input fields based on radio button selection
+        function toggleInputs() {
+            const toAccountInput = document.getElementById("toAccount");
+            const toWalletInput = document.getElementById("toWallet");
+
+            const toAccountRadio = document.querySelector('input[name="toType"][value="BA"]');
+            const toWalletRadio = document.querySelector('input[name="toType"][value="WA"]');
+
+            if (toAccountRadio.checked) {
+                toAccountInput.disabled = false; // Enable "TO ACCOUNT NUMBER"
+                toWalletInput.disabled = true;   // Disable "TO WALLET"
+            } else if (toWalletRadio.checked) {
+                toAccountInput.disabled = true;  // Disable "TO ACCOUNT NUMBER"
+                toWalletInput.disabled = false;  // Enable "TO WALLET"
+            }
+        }
+
+        // Attach event listeners to radio buttons
+        window.onload = function () {
+            const radios = document.querySelectorAll('input[name="toType"]');
+            radios.forEach(radio => {
+                radio.addEventListener("change", toggleInputs);
+            });
+
+            // Initialize the state on page load
+            toggleInputs();
+        };
+    </script>
 </body>
 </html>
